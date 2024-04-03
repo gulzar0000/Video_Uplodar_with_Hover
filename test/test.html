@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	 .video-uploader {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        /* justify-content: flex-start; */
+        align-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .video-uploader video {
+        width: 100%;
+    }
+
+    @media screen and (max-device-width : 768px) {
+        .video-uploader {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        /* Apply styles for screens less than or equal to 768px */
+        .video-attachment {
+            width: 100%;
+        }
+    }
+</style>
+<body>
+	<div class="video-uploader">
+		<div class="laptop">
+			<video class="video-attachment" id="myVideo" controls muted>
+				<source src="pattern_-_12313 (720p).mp4" type="video/mp4">
+			</video>
+		</div>
+		<div class="mobile">
+			<video class="video-attachment" id="myVideo1" muted controls>
+				<source src="pattern_-_12313 (720p).mp4" type="video/mp4">
+			</video>
+		</div>
+		<div>
+		</div>
+</body>
+<script>
+    // Function to handle hover effects
+			function handleHover(event) {
+        const video = event.target;
+			if (video.paused) {
+				video.play();
+        } else {
+				video.pause();
+        }
+    }
+
+    // Feature detection for touch events
+    var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
+			// User agent sniffing (example, not recommended)
+			var isLaptop = /Laptop/i.test(navigator.userAgent);
+
+			// Combine feature detection and user agent sniffing
+			if (isTouchDevice && !isLaptop) {
+				// Touch events for screens smaller than or equal to 768px
+				document.querySelectorAll('.video-attachment').forEach(function (video) {
+					video.addEventListener('touchstart', handleHover);
+					video.addEventListener('touchend', handleHover);
+				});
+    } else {
+				// Mouse hover events for screens larger than 768px
+				document.querySelectorAll('.video-attachment').forEach(function (video) {
+					video.addEventListener('mouseenter', handleHover);
+					video.addEventListener('mouseleave', handleHover);
+				});
+    }
+
+
+
+	
+		// 	document.addEventListener("DOMContentLoaded", function () {
+		// var video = document.getElementById("myVideo");
+		// 	var isMouseOverVideo = false;
+		// 	// Pause video by default
+			// video.pause();
+
+			// Play video on mouse enter and pause on mouse leave
+	// 		video.addEventListener("mouseenter", function () {
+	// 			video.play();
+	// 	});
+
+	// 		video.addEventListener("mouseleave", function () {
+	// 			video.pause();
+	// 	});
+	// });
+
+
+	// 	document.addEventListener("DOMContentLoaded", function () {
+	// 	var video = document.getElementById("myVideo1");
+	// 	var isMouseOverVideo = false;
+	// 	// Pause video by default
+		// video.pause();
+
+		// Play video on mouse enter and pause on mouse leave
+	// 	// video.addEventListener("mouseenter", function () {
+	// 	// 	video.play();
+	// 	// });
+
+	// 	// video.addEventListener("mouseleave", function () {
+	// 	// 	video.pause();
+	// 	// });
+	// });
+</script>
+</html>
